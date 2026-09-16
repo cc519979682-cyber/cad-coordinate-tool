@@ -25,6 +25,8 @@ py -3.10 -m venv .venv
 
 ## 构建
 
+以下构建命令使用 PowerShell 7（`pwsh`）。
+
 ```powershell
 pwsh -File build.ps1 -PythonExe .\.venv\Scripts\python.exe
 ```

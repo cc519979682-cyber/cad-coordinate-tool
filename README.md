@@ -70,6 +70,8 @@ py -3.10 -m venv .venv
 
 ## 测试与构建
 
+构建使用 PowerShell 7（`pwsh`）；使用 Windows 下载包不需要安装它。
+
 ```powershell
 .\.venv\Scripts\python.exe scripts/run_tests.py
 pwsh -File build.ps1 -PythonExe .\.venv\Scripts\python.exe
