@@ -106,8 +106,8 @@ class ResumeTests(unittest.TestCase):
         doc.FullName = str(new_path)
         with patch('coordtool.picker._com_modules', return_value=(pc, client)):
             session.launch()
-        self.assertEqual(session.drawing_path, new_path)
-        self.assertEqual(json.loads((session.directory/'session.json').read_text(encoding='utf-8'))['drawing_path'], str(new_path))
+        self.assertEqual(session.drawing_path, new_path.resolve())
+        self.assertEqual(json.loads((session.directory/'session.json').read_text(encoding='utf-8'))['drawing_path'], str(new_path.resolve()))
         app.Documents.Open.assert_not_called()
 
     def test_missing_or_ambiguous_drawing_does_not_open_or_send(self):

@@ -254,7 +254,7 @@ class RoadMenuFlowTests(unittest.TestCase):
         points, settings, drawing = load_project(self.session.recovery_path)
         self.assertEqual(points, self.app.points)
         self.assertEqual(settings, self.settings)
-        self.assertEqual(Path(drawing), self.source)
+        self.assertTrue(Path(drawing).samefile(self.source))
         first = points[32]
         self.assertEqual((first.e, first.n, first.z), (-53002., -13303., -3.25))
         self.assertEqual((first.placement.e, first.placement.n,

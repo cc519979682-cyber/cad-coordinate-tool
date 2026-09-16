@@ -1,6 +1,9 @@
 """Read-only document identity and COM lifetime regression checks."""
 import json
 import ntpath
+import os
+from pathlib import Path
+import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
@@ -143,6 +146,36 @@ class CadDocumentsTests(unittest.TestCase):
         doc = drawing(200, "ROAD.DWG", r"C:\Project\ROAD.DWG")
         selected = dict(target(doc), name="road.dwg", path="c:/project/road.dwg")
         self.assertIs(find_open_document(application([doc]), selected), doc)
+
+    @unittest.skipUnless(os.name == "nt", "Windows short-path aliases require Win32")
+    def test_existing_short_and_long_paths_identify_same_open_document(self):
+        import ctypes
+        from ctypes import wintypes
+
+        get_short_path = ctypes.WinDLL("kernel32", use_last_error=True).GetShortPathNameW
+        get_short_path.argtypes = (wintypes.LPCWSTR, wintypes.LPWSTR, wintypes.DWORD)
+        get_short_path.restype = wintypes.DWORD
+        with tempfile.TemporaryDirectory(prefix="coord-document-long-fixture-") as directory:
+            source = Path(directory).resolve() / "road.dwg"
+            source.write_bytes(b"synthetic document identity fixture")
+            required = get_short_path(str(source), None, 0)
+            if not required:
+                self.skipTest("The temporary volume does not expose short-path aliases")
+            buffer = ctypes.create_unicode_buffer(required)
+            length = get_short_path(str(source), buffer, len(buffer))
+            self.assertGreater(length, 0)
+            self.assertLess(length, len(buffer))
+            alias = buffer.value
+            if ntpath.normcase(alias) == ntpath.normcase(str(source)):
+                self.skipTest("8.3 aliases are disabled for the temporary volume")
+            self.assertTrue(Path(alias).samefile(source))
+            for actual, requested in ((alias, str(source)), (str(source), alias)):
+                with self.subTest(actual=actual, requested=requested):
+                    doc = drawing(200, source.name, actual)
+                    app = application([doc])
+                    selected = dict(target(doc), path=requested)
+                    self.assertIs(find_open_document(app, selected), doc)
+                    app.Documents.Open.assert_not_called()
 
     def test_transient_busy_read_retries_without_a_cad_mutation(self):
         doc = drawing(200, "道路.dwg", r"C:\工程\道路.dwg")

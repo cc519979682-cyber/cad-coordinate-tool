@@ -8,10 +8,21 @@ Neither function opens, activates, saves, changes, or closes any CAD document.
 from __future__ import annotations
 
 import ntpath
+from pathlib import Path
 
 
 def _path_identity(path):
-    return None if path is None else ntpath.normcase(ntpath.normpath(path))
+    if path is None:
+        return None
+    # CAD may retain an 8.3 path while the session stores its resolved spelling.
+    # Resolve before comparing so both names identify the same saved drawing.
+    try:
+        path = str(Path(path).resolve())
+    except (OSError, RuntimeError, ValueError):
+        # Preserve the conservative textual comparison if the path cannot be
+        # resolved, e.g. an unavailable external drive. No file is opened here.
+        pass
+    return ntpath.normcase(ntpath.normpath(path))
 
 
 def _identity(document, read):

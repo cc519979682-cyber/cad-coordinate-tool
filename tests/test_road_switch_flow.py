@@ -237,7 +237,7 @@ class RoadSwitchFlowTests(unittest.TestCase):
         recovered, settings, drawing = load_project(session.recovery_path)
         self.assertEqual(recovered, points)
         self.assertEqual(settings, self.settings)
-        self.assertEqual(Path(drawing), self.source)
+        self.assertTrue(Path(drawing).samefile(self.source))
         payload = json.loads(session.recovery_path.read_text(encoding="utf-8"))
         self.assertEqual(payload["picker"]["current_segment"], 2)
         self.assertIn("segments", payload["picker"])

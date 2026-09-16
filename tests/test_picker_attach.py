@@ -51,7 +51,7 @@ class AttachedPickerTests(unittest.TestCase):
         doc.Activate.side_effect = lambda: setattr(app, "ActiveDocument", doc)
 
         def open_original(path, readonly):
-            self.assertEqual(path, str(self.source))
+            self.assertTrue(Path(path).samefile(self.source))
             self.assertFalse(readonly)
             if doc not in items:
                 items.append(doc)
@@ -98,8 +98,9 @@ class AttachedPickerTests(unittest.TestCase):
     @contextmanager
     def redirected_session_directory(self, physical_parent, *, same_parent):
         """Model MSIX resolving only the child into a different-looking path."""
-        logical_parent = self.root / "sessions"
+        logical_parent = (self.root / "sessions").resolve()
         physical_parent.mkdir()
+        physical_parent = physical_parent.resolve()
         original_resolve, original_samefile = Path.resolve, Path.samefile
 
         def resolve(path, *args, **kwargs):
@@ -124,8 +125,8 @@ class AttachedPickerTests(unittest.TestCase):
             session = self.attach()
             self.assertNotEqual(session.directory.parent, base)
             self.assertFalse(session.directory.is_relative_to(base))
-            self.assertEqual(session.directory.parent, physical_parent)
-            identity.assert_any_call(physical_parent, base)
+            self.assertEqual(session.directory.parent, physical_parent.resolve())
+            identity.assert_any_call(physical_parent.resolve(), base)
             self.assertTrue(session.lsp_path.is_file())
             self.assertEqual(load_project(session.recovery_path)[0], [])
         self.assert_no_drawing_artifacts(session)
@@ -135,7 +136,7 @@ class AttachedPickerTests(unittest.TestCase):
         with self.redirected_session_directory(physical_parent, same_parent=False) as (base, identity):
             with self.assertRaisesRegex(PickerError, "工作目录校验失败"):
                 self.attach()
-            identity.assert_any_call(physical_parent, base)
+            identity.assert_any_call(physical_parent.resolve(), base)
         self.assertEqual(list(physical_parent.rglob("picker.lsp")), [])
         self.assertEqual(list(physical_parent.rglob("recovery.coordproj")), [])
 
@@ -155,7 +156,7 @@ class AttachedPickerTests(unittest.TestCase):
         self.assertGreater(com.doc.SendCommand.call_count, 1)
         self.assert_no_copy_or_save(com)
         self.assert_no_drawing_artifacts(session)
-        self.assertEqual(session.drawing_path, self.source)
+        self.assertTrue(session.drawing_path.samefile(self.source))
         self.assertEqual(load_project(session.recovery_path)[0], old_points)
         self.assertEqual(self.source.read_bytes(), original)
         self.assertEqual(session.poll(), [{"type": "READY"}])
@@ -202,8 +203,8 @@ class AttachedPickerTests(unittest.TestCase):
         session = self.attach(target=target)
         com = self.fake_com(opened=False)
         self.launch(session, com)
-        com.documents.Open.assert_called_once_with(str(self.source), False)
-        self.assertEqual(session.drawing_path, self.source)
+        com.documents.Open.assert_called_once_with(str(self.source.resolve()), False)
+        self.assertTrue(session.drawing_path.samefile(self.source))
         self.assert_no_drawing_artifacts(session)
         self.assert_no_copy_or_save(com)
         self.assertEqual(session.poll(), [{"type": "READY"}])
@@ -237,7 +238,7 @@ class AttachedPickerTests(unittest.TestCase):
         self.assertEqual(len({point.capture_id for point in points}), 2)
         self.assertTrue(second.ready and second.done)
         self.assertEqual(load_project(second.recovery_path)[0], points)
-        self.assertEqual(second.drawing_path, self.source)
+        self.assertTrue(second.drawing_path.samefile(self.source))
         com.documents.Open.assert_not_called()
         self.assertEqual(com.doc.Activate.call_count, 2)
         self.assert_no_copy_or_save(com)
