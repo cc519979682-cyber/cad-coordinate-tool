@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.ps1 text eol=crlf
+*.dxf text eol=lf -whitespace
+*.png binary
+licenses/native/** -text -whitespace

@@ -1,0 +1,44 @@
+# Local Python/build environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+build/
+dist/
+reports/
+release/
+
+# Local settings and secrets
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+*.log
+*.lock
+Thumbs.db
+.DS_Store
+
+# User drawings, coordinate projects, sessions, and original working material
+*.dwg
+*.dwl
+*.dwl2
+*.bak
+*.coordproj
+*.xlsx
+*.xls
+*.csv
+*.dxf
+!examples/sample_points.csv
+!examples/sample_base.dxf
+original/
+backups/
+qa/
+data/
+picks/
+*.zip
+*.exe
+*.lnk

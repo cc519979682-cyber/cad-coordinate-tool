@@ -1,0 +1,17 @@
+# Validated with CPython 3.10, Windows x64.
+# Runtime dependencies:
+ttkbootstrap==1.20.2
+tkinterdnd2==0.5.0
+matplotlib==3.10.8
+numpy==1.26.4
+Pillow==12.1.0
+ezdxf==1.4.3
+ezdwg==0.12.7
+openpyxl==3.1.5
+xlrd==2.0.2
+
+# Local executable build dependencies:
+pyinstaller==6.19.0
+pyinstaller-hooks-contrib==2026.3
+
+pywin32==311; sys_platform == "win32"
