@@ -1,15 +1,30 @@
 # 坐标生成器 · CAD Coordinate Tool
 
-[![Windows checks](https://github.com/cc519979682-cyber/cad-coordinate-tool/actions/workflows/windows.yml/badge.svg)](https://github.com/cc519979682-cyber/cad-coordinate-tool/actions/workflows/windows.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+<p align="center">
+  <img src="assets/readme/hero.svg" width="100%" alt="坐标生成器：CAD 图纸取点、道路编号、坐标表与 DXF 标注的虚构示意">
+</p>
 
 **从 CAD 图纸取点，到坐标表和标注图导出。** 这是一款面向施工测量的中文 Windows 桌面工具：在当前 AutoCAD 图纸中取点、按道路连续编号并摆放标注，确认后将点名和 E/N/Z 回传点表。也可导入 TXT、CSV、Excel 坐标，在 DXF 底图上预览并导出带标注的 DXF。
 
 **[下载 Windows 版](https://github.com/cc519979682-cyber/cad-coordinate-tool/releases/latest)** · [详细操作说明](docs/USAGE.md) · [开发与测试](CONTRIBUTING.md) · [问题反馈](https://github.com/cc519979682-cyber/cad-coordinate-tool/issues)
 
-![虚构工程图的坐标叠加预览；由实际预览模块生成，并非软件窗口截图](docs/demo-preview.png)
+[![Windows checks](https://github.com/cc519979682-cyber/cad-coordinate-tool/actions/workflows/windows.yml/badge.svg)](https://github.com/cc519979682-cyber/cad-coordinate-tool/actions/workflows/windows.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-> 图纸与坐标均为仓库内的虚构示例。当前公开版本为 v22.8.0，软件界面显示 v22.8。
+## 先看图纸与坐标
+
+[![虚构工程图的坐标叠加预览；由实际预览模块生成，并非软件窗口截图](docs/demo-preview.png)](docs/demo-preview.png)
+
+> 图纸与坐标均为仓库内的虚构示例；图片由实际底图预览与标注代码生成，并非软件窗口截图。[查看原尺寸](docs/demo-preview.png)。当前公开版本为 v22.8.0，软件界面显示 v22.8。
+
+## 快速开始
+
+### Windows 下载包
+
+1. 从 [Releases](https://github.com/cc519979682-cyber/cad-coordinate-tool/releases/latest) 下载 `cad-coordinate-tool-v22.8.0-windows-x64.zip`。
+2. **完整解压**，保留 EXE、`_internal` 和许可证文件夹，双击 `坐标生成器v22.8.exe`。不需要自行安装 Python。
+3. 点击右上角 **示例图**，即可用虚构数据体验底图和坐标叠加。
+4. 需要实际取点时，在 AutoCAD 打开图纸，再点击软件顶部 **CAD 取点**。
 
 ## 能做什么
 
@@ -20,16 +35,7 @@
 - **编辑、保存与恢复**：坐标增删改、E/N 互换、撤销、项目保存，以及取点日志恢复。
 - **导出**：坐标表、带标注 DXF、绘图 LSP；保留已确认的道路分组与标注位置。
 
-## 快速使用
-
-### Windows 下载包
-
-1. 从 [Releases](https://github.com/cc519979682-cyber/cad-coordinate-tool/releases/latest) 下载 `cad-coordinate-tool-v22.8.0-windows-x64.zip`。
-2. **完整解压**，保留 EXE、`_internal` 和许可证文件夹，双击 `坐标生成器v22.8.exe`。不需要自行安装 Python。
-3. 点击右上角 **示例图**，即可用虚构数据体验底图和坐标叠加。
-4. 需要实际取点时，在 AutoCAD 打开图纸，再点击软件顶部 **CAD 取点**。
-
-### 道路取点的常用操作
+## 道路取点速查
 
 | 所在阶段 | 操作 | 结果 |
 |---|---|---|
