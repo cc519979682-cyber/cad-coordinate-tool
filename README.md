@@ -3,7 +3,9 @@
 [![Windows checks](https://github.com/cc519979682-cyber/cad-coordinate-tool/actions/workflows/windows.yml/badge.svg)](https://github.com/cc519979682-cyber/cad-coordinate-tool/actions/workflows/windows.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-面**从 CAD 图纸取点，到坐标表和标注图导出。** 这是一款面向施工测量的中文 Windows 桌面工具：在当前 AutoCAD 图纸中取点、按道路连续编号并摆放标注，确认后将点名和 E/N/Z 回传点表。也可导入 TXT、CSV、Excel 坐标，在 DXF 底图上预览并导出带标注的 DXF。**[下载 Windows 版](https://github.com/cc519979682-cyber/cad-coordinate-tool/releases/latest)** · [详细操作说明](docs/USAGE.md) · [开发与测试](CONTRIBUTING.md) · [问题反馈](https://github.com/cc519979682-cyber/cad-coordinate-tool/issues)
+**从 CAD 图纸取点，到坐标表和标注图导出。** 这是一款面向施工测量的中文 Windows 桌面工具：在当前 AutoCAD 图纸中取点、按道路连续编号并摆放标注，确认后将点名和 E/N/Z 回传点表。也可导入 TXT、CSV、Excel 坐标，在 DXF 底图上预览并导出带标注的 DXF。
+
+**[下载 Windows 版](https://github.com/cc519979682-cyber/cad-coordinate-tool/releases/latest)** · [详细操作说明](docs/USAGE.md) · [开发与测试](CONTRIBUTING.md) · [问题反馈](https://github.com/cc519979682-cyber/cad-coordinate-tool/issues)
 
 ![虚构工程图的坐标叠加预览；由实际预览模块生成，并非软件窗口截图](docs/demo-preview.png)
 
