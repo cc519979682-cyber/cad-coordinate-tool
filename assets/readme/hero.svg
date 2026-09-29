@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-labelledby="title desc">
+  <title id="title">坐标生成器：从 CAD 图纸取点，到坐标表与标注图</title>
+  <desc id="desc">项目虚构示例的坐标点轮廓、东 E 与北 N 轴、点名和引线标注示意；不是软件窗口截图。</desc>
+
+  <rect width="1200" height="390" rx="26" fill="#0b131e"/>
+  <path d="M620 0V390" stroke="#243748"/>
+
+  <g id="title-block" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="58" y="62" fill="#5fc4ff" font-size="18" font-weight="700" letter-spacing="2">CAD COORDINATE TOOL</text>
+    <text x="58" y="145" fill="#f2f7fc" font-size="68" font-weight="700">坐标生成器</text>
+    <text x="58" y="208" fill="#f2f7fc" font-size="30" font-weight="600">图纸取点，坐标成表</text>
+    <text x="58" y="250" fill="#a4b8cc" font-size="22">道路编号 · 三行标注 · DXF 导出</text>
+    <path d="M58 289H552" stroke="#32465a"/>
+    <text x="58" y="328" fill="#92a9bf" font-size="18">面向施工测量的中文 Windows 桌面工具</text>
+  </g>
+
+  <g id="coordinate-specimen" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <rect x="650" y="38" width="506" height="314" rx="14" fill="#101a26" stroke="#2c4157"/>
+    <text x="681" y="77" fill="#a4b8cc" font-size="18">虚构点位示意</text>
+    <text x="1088" y="77" fill="#5fc4ff" font-size="18" text-anchor="end">E / N</text>
+
+    <path d="M704 115H1111 M704 186H1111 M704 257H1111 M760 100V314 M888 100V314 M1016 100V314" stroke="#243748" stroke-width="1"/>
+    <path d="M760 276H888H1016L1048 245V161L1016 130H760L728 161V245Z" fill="none" stroke="#89a3b8" stroke-width="2"/>
+    <path d="M812 185H944V243H812Z" fill="none" stroke="#2b9cc7" stroke-width="2"/>
+    <text x="829" y="219" fill="#7cbfef" font-size="18">CAD 底图</text>
+
+    <g fill="#0b131e" stroke="#ff6d79" stroke-width="3">
+      <circle cx="760" cy="276" r="6"/>
+      <circle cx="888" cy="276" r="6"/>
+      <circle cx="1016" cy="276" r="6"/>
+      <circle cx="1048" cy="245" r="6"/>
+      <circle cx="1048" cy="161" r="6"/>
+      <circle cx="1016" cy="130" r="6"/>
+      <circle cx="760" cy="130" r="6"/>
+      <circle cx="728" cy="161" r="6"/>
+      <circle cx="728" cy="245" r="6"/>
+    </g>
+    <g stroke="#ff6d79" stroke-width="2" fill="none">
+      <path d="M760 276V302H786"/>
+      <path d="M888 276V302H914"/>
+      <path d="M1016 276V302H1042"/>
+    </g>
+    <g fill="#ff8b92" font-size="20" font-weight="700">
+      <text x="790" y="309">P01</text>
+      <text x="918" y="309">P02</text>
+      <text x="1046" y="309">P03</text>
+    </g>
+    <text x="681" y="335" fill="#92a9bf" font-size="16">示意图 · 非软件窗口截图</text>
+  </g>
+</svg>
